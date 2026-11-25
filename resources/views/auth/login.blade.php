@@ -19,7 +19,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login.post') }}" class="space-y-3.5">
+        <form id="login-form" method="POST" action="{{ route('login.post') }}" class="space-y-3.5">
             @csrf
             <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
@@ -57,13 +57,13 @@
             </div>
             <div class="grid grid-cols-2 gap-2">
                 <button type="button"
-                        onclick="document.getElementById('email').value='admin@webotapp.com'; document.getElementById('password').value='password123'; this.form.submit();"
-                        class="px-2.5 py-1.5 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded text-[11px] font-medium text-center transition">
+                        onclick="document.getElementById('email').value='admin@webotapp.com'; document.getElementById('password').value='admin123'; document.getElementById('login-form').submit();"
+                        class="px-2.5 py-1.5 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded text-[11px] font-medium text-center transition cursor-pointer">
                     👤 Login as Admin
                 </button>
                 <button type="button"
-                        onclick="document.getElementById('email').value='staff@webotapp.com'; document.getElementById('password').value='password123'; this.form.submit();"
-                        class="px-2.5 py-1.5 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded text-[11px] font-medium text-center transition">
+                        onclick="document.getElementById('email').value='staff@webotapp.com'; document.getElementById('password').value='staff123'; document.getElementById('login-form').submit();"
+                        class="px-2.5 py-1.5 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded text-[11px] font-medium text-center transition cursor-pointer">
                     👥 Login as Staff
                 </button>
             </div>
