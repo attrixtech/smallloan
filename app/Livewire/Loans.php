@@ -92,7 +92,7 @@ class Loans extends Component
             [
                 'item_name' => '',
                 'category' => 'Ring',
-                'gross_weight' => '',
+                'gross_weight' => 0,
                 'stone_weight' => 0,
                 'net_gold_weight' => 0,
                 'purity' => '22K',
@@ -113,7 +113,7 @@ class Loans extends Component
         $this->items[] = [
             'item_name' => '',
             'category' => 'Ring',
-            'gross_weight' => '',
+            'gross_weight' => 0,
             'stone_weight' => 0,
             'net_gold_weight' => 0,
             'purity' => '22K',
@@ -168,22 +168,22 @@ class Loans extends Component
 
     public function getTotalValuationProperty()
     {
-        return array_sum(array_column($this->items, 'valuation_amount'));
+        return array_sum(array_map('floatval', array_column($this->items, 'valuation_amount')));
     }
 
     public function getTotalNetWeightProperty()
     {
-        return array_sum(array_column($this->items, 'net_gold_weight'));
+        return array_sum(array_map('floatval', array_column($this->items, 'net_gold_weight')));
     }
 
     public function getTotalGrossWeightProperty()
     {
-        return array_sum(array_column($this->items, 'gross_weight'));
+        return array_sum(array_map('floatval', array_column($this->items, 'gross_weight')));
     }
 
     public function getTotalStoneWeightProperty()
     {
-        return array_sum(array_column($this->items, 'stone_weight'));
+        return array_sum(array_map('floatval', array_column($this->items, 'stone_weight')));
     }
 
     public function createLoan()
