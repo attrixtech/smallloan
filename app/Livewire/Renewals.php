@@ -213,6 +213,12 @@ class Renewals extends Component
         session()->flash('success', "Loan renewal {$renewalNo} completed successfully!");
     }
 
+    public function printRenewal($id)
+    {
+        $this->selectedRenewal = LoanRenewal::with(['loan.customer', 'payment', 'processor'])->findOrFail($id);
+        $this->showPrintModal = true;
+    }
+
     public function viewRenewal($id)
     {
         $this->selectedRenewal = LoanRenewal::with(['loan.customer', 'payment', 'processor'])->findOrFail($id);

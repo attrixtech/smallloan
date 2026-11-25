@@ -183,6 +183,11 @@ class Payments extends Component
         $this->total_amount_paid = max(0, round($interest + $principal + $penalty - $discount, 2));
     }
 
+    public function savePayment()
+    {
+        $this->processPayment();
+    }
+
     public function processPayment()
     {
         $this->validate([
