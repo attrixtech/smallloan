@@ -182,10 +182,14 @@ class Reports extends Component
             'monthlyTotalPrincipal' => $monthlyTotalPrincipal,
 
             'activeLoansList' => $activeLoansList,
+            'activeLoans' => $activeLoansList,
             'overdueLoansList' => $overdueLoansList,
+            'overdueLoans' => $overdueLoansList,
             'closedLoansList' => $closedLoansList,
+            'closedLoans' => $closedLoansList,
 
             'customersList' => $customersList,
+            'allCustomers' => $customersList,
             'ledgerCustomer' => $ledgerCustomer,
             'ledgerLoans' => $ledgerLoans,
             'ledgerPayments' => $ledgerPayments,
