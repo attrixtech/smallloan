@@ -25,6 +25,14 @@ class Loans extends Component
     public $showPrintModal = false;
     public $showReceiptModal = false;
 
+    // Inline Quick Customer Creation
+    public $showQuickCustomerForm = false;
+    public $quick_customer_name = '';
+    public $quick_customer_mobile = '';
+    public $quick_customer_address = '';
+    public $quick_customer_pan = '';
+    public $quick_customer_aadhaar = '';
+
     // Loan Form Fields
     public $customer_id;
     public $loan_no;
@@ -104,7 +112,45 @@ class Loans extends Component
             ]
         ];
 
+        $this->showQuickCustomerForm = false;
+        $this->reset(['quick_customer_name', 'quick_customer_mobile', 'quick_customer_address', 'quick_customer_pan', 'quick_customer_aadhaar']);
         $this->showCreateModal = true;
+    }
+
+    public function createQuickCustomer()
+    {
+        $this->validate([
+            'quick_customer_name' => 'required|string|max:100',
+            'quick_customer_mobile' => 'required|string|max:15',
+            'quick_customer_address' => 'required|string|max:500',
+            'quick_customer_pan' => 'nullable|string|max:20',
+            'quick_customer_aadhaar' => 'nullable|string|max:20',
+        ]);
+
+        $customer = Customer::create([
+            'customer_code' => Customer::generateCode(),
+            'name' => $this->quick_customer_name,
+            'mobile' => $this->quick_customer_mobile,
+            'address' => $this->quick_customer_address,
+            'pan_number' => $this->quick_customer_pan ? strtoupper($this->quick_customer_pan) : null,
+            'aadhaar_number' => $this->quick_customer_aadhaar ?: null,
+            'id_proof_type' => $this->quick_customer_aadhaar ? 'Aadhaar' : ($this->quick_customer_pan ? 'PAN' : null),
+            'id_proof_number' => $this->quick_customer_aadhaar ?: ($this->quick_customer_pan ? strtoupper($this->quick_customer_pan) : null),
+            'status' => 'active',
+        ]);
+
+        FinancialLog::record(
+            'customer_created',
+            "Quick customer registered during loan origination: {$customer->name} ({$customer->customer_code})",
+            0,
+            null,
+            $customer->id,
+            $customer->customer_code
+        );
+
+        $this->customer_id = $customer->id;
+        $this->showQuickCustomerForm = false;
+        $this->reset(['quick_customer_name', 'quick_customer_mobile', 'quick_customer_address', 'quick_customer_pan', 'quick_customer_aadhaar']);
     }
 
     public function addItemRow()

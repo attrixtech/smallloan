@@ -145,7 +145,12 @@
                     <!-- Section 1: Customer & Loan Principal -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                         <div class="md:col-span-1">
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Select Customer / Borrower <span class="text-rose-500">*</span></label>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-semibold text-slate-700">Select Customer / Borrower <span class="text-rose-500">*</span></label>
+                                <button type="button" wire:click="$toggle('showQuickCustomerForm')" class="text-[11px] font-semibold text-amber-700 hover:text-amber-900 cursor-pointer">
+                                    {{ $showQuickCustomerForm ? '× Close' : '+ New Customer' }}
+                                </button>
+                            </div>
                             <select wire:model="customer_id" class="input-compact">
                                 <option value="">-- Choose Customer --</option>
                                 @foreach($customers as $c)
@@ -172,6 +177,47 @@
                             </div>
                         </div>
                     </div>
+
+                    @if($showQuickCustomerForm)
+                        <div class="bg-slate-50 border border-amber-300 rounded p-3 space-y-2.5">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[11px] font-bold text-amber-900 uppercase tracking-wider">Quick Register New Customer</span>
+                                <button type="button" wire:click="$set('showQuickCustomerForm', false)" class="text-slate-400 hover:text-slate-600 text-xs">Cancel</button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                                <div>
+                                    <label class="block text-[10px] font-semibold text-slate-600 mb-0.5">Full Name <span class="text-rose-500">*</span></label>
+                                    <input type="text" wire:model="quick_customer_name" class="input-compact" placeholder="e.g. Rajesh Kumar Sharma">
+                                    @error('quick_customer_name') <span class="text-[10px] text-rose-500">{{ $message }}</span> @enderror
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-semibold text-slate-600 mb-0.5">Mobile <span class="text-rose-500">*</span></label>
+                                    <input type="text" wire:model="quick_customer_mobile" class="input-compact" placeholder="98XXXXXXXX">
+                                    @error('quick_customer_mobile') <span class="text-[10px] text-rose-500">{{ $message }}</span> @enderror
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-semibold text-slate-600 mb-0.5">Address <span class="text-rose-500">*</span></label>
+                                    <input type="text" wire:model="quick_customer_address" class="input-compact" placeholder="House/Flat No, Street, City">
+                                    @error('quick_customer_address') <span class="text-[10px] text-rose-500">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-end">
+                                <div>
+                                    <label class="block text-[10px] font-semibold text-slate-600 mb-0.5">Aadhaar (Optional)</label>
+                                    <input type="text" wire:model="quick_customer_aadhaar" class="input-compact font-mono" placeholder="XXXX-XXXX-XXXX">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-semibold text-slate-600 mb-0.5">PAN (Optional)</label>
+                                    <input type="text" wire:model="quick_customer_pan" class="input-compact uppercase font-mono" placeholder="ABCDE1234F">
+                                </div>
+                                <div class="flex justify-end">
+                                    <button type="button" wire:click="createQuickCustomer" class="btn-primary !py-1.5 text-xs">
+                                        Save &amp; Select Customer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
 
                     <!-- Section 2: Calculation Method & Dates -->
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
