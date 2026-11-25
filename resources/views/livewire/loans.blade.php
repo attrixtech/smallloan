@@ -342,6 +342,7 @@
                                 <span>Gross Wt: <strong>{{ number_format($this->totalGrossWeight, 3) }} g</strong></span>
                                 <span>Net Pure Gold: <strong class="text-amber-900">{{ number_format($this->totalNetWeight, 3) }} g</strong></span>
                                 <span>Total Valuation: <strong class="text-emerald-900">₹{{ number_format($this->totalValuation, 2) }}</strong></span>
+                                <span>Est. Monthly EMI (P+I): <strong class="text-blue-800">₹{{ number_format($this->estimatedEmi['emi'] ?? 0, 2) }}</strong></span>
                             </div>
                             <div>
                                 <span class="font-bold text-slate-800">Calculated LTV: </span>

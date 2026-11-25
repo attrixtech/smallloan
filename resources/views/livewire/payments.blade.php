@@ -37,6 +37,7 @@
                     <option value="interest_only">Interest Only</option>
                     <option value="principal_only">Principal Only</option>
                     <option value="partial_both">Partial (Both)</option>
+                    <option value="monthly_emi">Monthly EMI (P+I)</option>
                     <option value="full_settlement">Full Settlement</option>
                 </select>
             </div>
@@ -170,7 +171,7 @@
                                 <span>Real-Time Interest & Balance Position</span>
                                 <span>{{ $interestCalc['days'] }} Days Elapsed ({{ $interestCalc['months'] }} Months)</span>
                             </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
                                 <div class="bg-white p-2 rounded border border-amber-200/60">
                                     <span class="text-[10px] text-slate-500 block">Principal Balance</span>
                                     <strong class="text-slate-900 font-bold">₹{{ number_format($interestCalc['principal'], 2) }}</strong>
@@ -183,6 +184,10 @@
                                     <span class="text-[10px] text-slate-500 block">Accrued Interest Due</span>
                                     <strong class="text-amber-800 font-bold">₹{{ number_format($interestCalc['net_interest_due'], 2) }}</strong>
                                 </div>
+                                <div class="bg-white p-2 rounded border border-blue-200/80">
+                                    <span class="text-[10px] text-slate-500 block">Monthly EMI (P+I)</span>
+                                    <strong class="text-blue-700 font-bold">₹{{ number_format($interestCalc['monthly_emi'] ?? 0, 2) }}</strong>
+                                </div>
                                 <div class="bg-white p-2 rounded border border-amber-200/60">
                                     <span class="text-[10px] text-slate-500 block">Full Settlement Total</span>
                                     <strong class="text-emerald-700 font-bold">₹{{ number_format($interestCalc['total_settlement_amount'], 2) }}</strong>
@@ -194,7 +199,7 @@
                     <!-- Payment Type Selection -->
                     <div>
                         <label class="block font-semibold text-slate-700 mb-1">Payment Type <span class="text-rose-500">*</span></label>
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
                             <label class="flex items-center space-x-2 p-2 rounded border border-slate-200 cursor-pointer hover:bg-slate-50 {{ $payment_type === 'interest_only' ? 'bg-amber-50/60 border-amber-500 font-semibold text-amber-900' : '' }}">
                                 <input type="radio" wire:model.live="payment_type" value="interest_only" class="text-amber-600 focus:ring-amber-500">
                                 <span>Interest Only</span>
@@ -206,6 +211,10 @@
                             <label class="flex items-center space-x-2 p-2 rounded border border-slate-200 cursor-pointer hover:bg-slate-50 {{ $payment_type === 'partial_both' ? 'bg-amber-50/60 border-amber-500 font-semibold text-amber-900' : '' }}">
                                 <input type="radio" wire:model.live="payment_type" value="partial_both" class="text-amber-600 focus:ring-amber-500">
                                 <span>Partial (Both)</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-2 rounded border border-slate-200 cursor-pointer hover:bg-slate-50 {{ $payment_type === 'monthly_emi' ? 'bg-blue-50 border-blue-500 font-semibold text-blue-900' : '' }}">
+                                <input type="radio" wire:model.live="payment_type" value="monthly_emi" class="text-blue-600 focus:ring-blue-500">
+                                <span>Monthly EMI (P+I)</span>
                             </label>
                             <label class="flex items-center space-x-2 p-2 rounded border border-slate-200 cursor-pointer hover:bg-slate-50 {{ $payment_type === 'full_settlement' ? 'bg-emerald-50 border-emerald-500 font-semibold text-emerald-900' : '' }}">
                                 <input type="radio" wire:model.live="payment_type" value="full_settlement" class="text-emerald-600 focus:ring-emerald-500">

@@ -244,6 +244,17 @@ class Loans extends Component
         return $val > 0 ? round(($principal / $val) * 100, 2) : 0;
     }
 
+    public function getEstimatedEmiProperty()
+    {
+        $principal = floatval($this->principal_amount ?? 0);
+        $rate = floatval($this->interest_rate ?? 0);
+        if ($this->interest_rate_type === 'per_annum') {
+            $rate = $rate / 12;
+        }
+        $tenure = max(1, intval($this->tenure_months ?? 12));
+        return \App\Services\InterestCalculator::calculateEmi($principal, $rate, $tenure, $this->interest_calculation_method ?? 'monthly');
+    }
+
     public function createLoan()
     {
         $this->validate([

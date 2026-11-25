@@ -87,6 +87,9 @@ class InterestCalculator
         $principalDue = round($principal, 2);
         $totalSettlement = round($principalDue + $netInterestDue, 2);
 
+        $tenureMonths = max(1, (int) ($loan->tenure_months ?? 12));
+        $emiData = self::calculateEmi((float) $loan->principal_amount, $monthlyRate, $tenureMonths, $method, $principalDue);
+
         return [
             'days' => $days,
             'months' => round($days / 30, 1),
@@ -97,7 +100,53 @@ class InterestCalculator
             'interest_paid' => $interestPaid,
             'net_interest_due' => $netInterestDue,
             'total_settlement_amount' => $totalSettlement,
+            'monthly_emi' => $emiData['emi'],
+            'monthly_emi_interest' => $emiData['interest_component'],
+            'monthly_emi_principal' => $emiData['principal_component'],
             'is_overdue' => Carbon::today()->gt(Carbon::parse($loan->maturity_date)) && $loan->status !== 'Closed',
+        ];
+    }
+
+    /**
+     * Calculate Monthly EMI (Principal + Interest) for a loan.
+     */
+    public static function calculateEmi(float $originalPrincipal, float $monthlyRatePct, int $tenureMonths, string $method = 'monthly', ?float $currentBalance = null): array
+    {
+        $n = max(1, $tenureMonths);
+        $r = max(0, $monthlyRatePct) / 100;
+        $balance = $currentBalance !== null ? $currentBalance : $originalPrincipal;
+
+        if ($originalPrincipal <= 0) {
+            return ['emi' => 0.0, 'interest_component' => 0.0, 'principal_component' => 0.0];
+        }
+
+        if ($r == 0.0) {
+            $emi = round($originalPrincipal / $n, 2);
+            $principalComp = min($balance, $emi);
+            return [
+                'emi' => $emi,
+                'interest_component' => 0.0,
+                'principal_component' => round($principalComp, 2),
+            ];
+        }
+
+        if ($method === 'flat') {
+            $interestComp = round($originalPrincipal * $r, 2);
+            $principalComp = round($originalPrincipal / $n, 2);
+            $emi = round($interestComp + $principalComp, 2);
+            $principalComp = min($balance, $principalComp);
+        } else {
+            // Standard reducing/amortized Monthly EMI: P * r * (1+r)^n / ((1+r)^n - 1)
+            $factor = pow(1 + $r, $n);
+            $emi = round($originalPrincipal * ($r * $factor) / ($factor - 1), 2);
+            $interestComp = round($balance * $r, 2);
+            $principalComp = round(min($balance, max(0, $emi - $interestComp)), 2);
+        }
+
+        return [
+            'emi' => $emi,
+            'interest_component' => $interestComp,
+            'principal_component' => $principalComp,
         ];
     }
 }

@@ -144,6 +144,11 @@ class Payments extends Component
                 $this->principal_amount = round($principal * 0.25, 2);
                 break;
 
+            case 'monthly_emi':
+                $this->interest_amount = floatval($this->liveInterestCalc['monthly_emi_interest'] ?? 0);
+                $this->principal_amount = floatval($this->liveInterestCalc['monthly_emi_principal'] ?? 0);
+                break;
+
             case 'full_settlement':
                 $this->interest_amount = $netInterest;
                 $this->principal_amount = $principal;
@@ -193,7 +198,7 @@ class Payments extends Component
         $this->validate([
             'loan_id' => 'required|exists:loans,id',
             'payment_date' => 'required|date',
-            'payment_type' => 'required|in:interest_only,principal_only,partial_both,full_settlement',
+            'payment_type' => 'required|in:interest_only,principal_only,partial_both,full_settlement,monthly_emi',
             'interest_amount' => 'required|numeric|min:0',
             'principal_amount' => 'required|numeric|min:0',
             'penalty_amount' => 'nullable|numeric|min:0',
