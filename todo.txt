@@ -1,0 +1,176 @@
+# Project: WeBotApp Gold Loan Manager
+
+Build a compact, modern, lightweight Gold Loan / Girvi Management Software using Laravel, MySQL, Livewire and Tailwind CSS.
+
+## 1. Design Requirements
+- Clean, professional and minimal UI.
+- Light background (white / light grey).
+- Small fonts (12–14px for normal content).
+- Compact tables, forms and dashboard cards.
+- Minimal spacing and padding.
+- Responsive desktop, tablet and mobile layout.
+- Simple sidebar navigation.
+- Avoid oversized cards, gradients, dark themes and unnecessary animations.
+- Use a professional financial software appearance.
+
+## 2. Dashboard
+Display:
+- Total active loans.
+- Total outstanding principal.
+- Total interest collected.
+- Total customers.
+- Loans due today.
+- Overdue loans.
+- Recent loan transactions.
+- Recent payments.
+
+## 3. Customer Management
+- Add, edit, view and search customers.
+- Customer name, mobile, address.
+- Optional PAN and KYC reference details.
+- Customer photograph.
+- Customer-wise loan history.
+- Customer profile with outstanding balance.
+
+## 4. Gold Pledge Management
+- Jewellery description.
+- Jewellery category.
+- Gross weight.
+- Stone weight.
+- Net gold weight.
+- Purity (18K, 20K, 22K, 24K).
+- Gold rate per gram.
+- Valuation amount.
+- Jewellery photograph.
+- Packet number.
+- Locker/storage reference.
+
+## 5. Loan Management
+- Generate automatic loan number.
+- Select existing customer.
+- Add pledged gold details.
+- Loan principal amount.
+- Interest rate.
+- Interest calculation method.
+- Loan issue date.
+- Maturity date.
+- Loan status: Active, Closed, Overdue.
+- Print loan agreement/pledge receipt.
+- View complete loan transaction history.
+
+## 6. Interest Management
+Support:
+- Daily interest.
+- Monthly interest.
+- Annual interest.
+- Flat interest.
+- Reducing balance interest.
+
+Interest rates and calculation methods must be configurable in settings. Show a clear interest breakdown before accepting payments.
+
+## 7. Payment Management
+- Collect interest payments.
+- Collect principal payments.
+- Accept partial payments.
+- Full loan settlement.
+- Payment mode: Cash, UPI, Bank Transfer.
+- Automatic payment receipt generation.
+- Printable payment receipts.
+- Complete payment history.
+- Outstanding balance calculation.
+
+## 8. Loan Renewal and Gold Release
+- Renew existing loans.
+- Extend maturity dates.
+- Record interest paid during renewal.
+- Maintain historical renewal records.
+- Release pledged jewellery after settlement.
+- Generate gold release receipt.
+- Prevent accidental release of unsettled loans unless an authorized override is recorded.
+
+## 9. Reports
+- Daily collection report.
+- Monthly collection report.
+- Active loans.
+- Closed loans.
+- Overdue loans.
+- Outstanding principal.
+- Interest income.
+- Customer ledger.
+- Export reports to Excel and PDF.
+
+## 10. Settings and User Profile
+Provide a simple Settings section with:
+
+**My Profile**
+- Change name.
+- Change email.
+- Change mobile number.
+- Upload/change profile photograph.
+
+**Security**
+- Change password.
+- Current password verification.
+- New password and confirmation.
+- Logout.
+
+**Business Settings**
+- Business/shop name.
+- Shop address.
+- Phone number.
+- Logo upload.
+- Currency (INR).
+- Receipt header and footer.
+- Default interest settings.
+- Gold purity options.
+
+## 11. User Management
+- Single-business, single-branch architecture.
+- Admin account.
+- Optional staff accounts.
+- Role-based permissions.
+- Admin can manage users and permissions.
+- No multi-branch functionality.
+
+## 12. Navigation
+Keep the sidebar compact:
+
+1. Dashboard
+2. Customers
+3. Gold Pledges
+4. Loans
+5. Payments
+6. Renewals
+7. Gold Release
+8. Reports
+9. Users
+10. Settings
+
+## 13. Technical Requirements
+- Laravel latest stable version compatible with project dependencies.
+- MySQL database.
+- Livewire.
+- Tailwind CSS.
+- Secure authentication.
+- Laravel validation.
+- Database migrations and seeders.
+- Use database transactions for financial operations.
+- Maintain an immutable financial transaction history.
+- Protect customer and financial data.
+- Implement proper authorization and audit logs.
+- Include sample demo data.
+
+## 14. Important Development Instructions
+- Build a fully functional application, not just a dashboard UI.
+- Every button, form, search, filter and action must work.
+- Use reusable components.
+- Use pagination for large tables.
+- Provide confirmation before deleting or closing records.
+- Do not permanently delete financial transactions.
+- Use soft deletion where appropriate.
+- Ensure accurate financial calculations using decimal database fields.
+- Avoid unnecessary complexity and features.
+- Keep the entire application lightweight and easy for non-technical shop owners to operate.
+
+## Final Objective
+Deliver a complete, compact, production-oriented Gold Loan / Girvi Management System for Indian businesses, with a clean light UI, small typography, simple navigation and reliable financial transaction management.
