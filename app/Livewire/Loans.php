@@ -38,7 +38,7 @@ class Loans extends Component
     public $notes;
 
     // Dynamic Pledged Items in new loan
-    public $pledgedItems = [];
+    public $items = [];
 
     // Selected loan for View / Print
     public $selectedLoan = null;
@@ -88,7 +88,7 @@ class Loans extends Component
         $this->notes = '';
 
         $defaultRate = (float) BusinessSetting::get('gold_rate_22k', 6850);
-        $this->pledgedItems = [
+        $this->items = [
             [
                 'item_name' => '',
                 'category' => 'Ring',
@@ -107,10 +107,10 @@ class Loans extends Component
         $this->showCreateModal = true;
     }
 
-    public function addPledgeRow()
+    public function addItemRow()
     {
         $defaultRate = (float) BusinessSetting::get('gold_rate_22k', 6850);
-        $this->pledgedItems[] = [
+        $this->items[] = [
             'item_name' => '',
             'category' => 'Ring',
             'gross_weight' => '',
@@ -125,19 +125,19 @@ class Loans extends Component
         ];
     }
 
-    public function removePledgeRow($index)
+    public function removeItemRow($index)
     {
-        if (count($this->pledgedItems) > 1) {
-            unset($this->pledgedItems[$index]);
-            $this->pledgedItems = array_values($this->pledgedItems);
+        if (count($this->items) > 1) {
+            unset($this->items[$index]);
+            $this->items = array_values($this->items);
         }
     }
 
     public function updateItemCalculation($index)
     {
-        if (!isset($this->pledgedItems[$index])) return;
+        if (!isset($this->items[$index])) return;
 
-        $purity = $this->pledgedItems[$index]['purity'] ?? '22K';
+        $purity = $this->items[$index]['purity'] ?? '22K';
         $rateKey = match($purity) {
             '24K' => 'gold_rate_24k',
             '22K' => 'gold_rate_22k',
@@ -153,37 +153,37 @@ class Loans extends Component
             default => 6850
         };
 
-        if (empty($this->pledgedItems[$index]['gold_rate_per_gram'])) {
-            $this->pledgedItems[$index]['gold_rate_per_gram'] = (float) BusinessSetting::get($rateKey, $defaultRate);
+        if (empty($this->items[$index]['gold_rate_per_gram'])) {
+            $this->items[$index]['gold_rate_per_gram'] = (float) BusinessSetting::get($rateKey, $defaultRate);
         }
 
-        $gross = floatval($this->pledgedItems[$index]['gross_weight'] ?? 0);
-        $stone = floatval($this->pledgedItems[$index]['stone_weight'] ?? 0);
+        $gross = floatval($this->items[$index]['gross_weight'] ?? 0);
+        $stone = floatval($this->items[$index]['stone_weight'] ?? 0);
         $net = max(0, round($gross - $stone, 3));
-        $this->pledgedItems[$index]['net_gold_weight'] = $net;
+        $this->items[$index]['net_gold_weight'] = $net;
 
-        $rate = floatval($this->pledgedItems[$index]['gold_rate_per_gram'] ?? 0);
-        $this->pledgedItems[$index]['valuation_amount'] = round($net * $rate, 2);
+        $rate = floatval($this->items[$index]['gold_rate_per_gram'] ?? 0);
+        $this->items[$index]['valuation_amount'] = round($net * $rate, 2);
     }
 
     public function getTotalValuationProperty()
     {
-        return array_sum(array_column($this->pledgedItems, 'valuation_amount'));
+        return array_sum(array_column($this->items, 'valuation_amount'));
     }
 
     public function getTotalNetWeightProperty()
     {
-        return array_sum(array_column($this->pledgedItems, 'net_gold_weight'));
+        return array_sum(array_column($this->items, 'net_gold_weight'));
     }
 
     public function getTotalGrossWeightProperty()
     {
-        return array_sum(array_column($this->pledgedItems, 'gross_weight'));
+        return array_sum(array_column($this->items, 'gross_weight'));
     }
 
     public function getTotalStoneWeightProperty()
     {
-        return array_sum(array_column($this->pledgedItems, 'stone_weight'));
+        return array_sum(array_column($this->items, 'stone_weight'));
     }
 
     public function createLoan()
@@ -196,14 +196,14 @@ class Loans extends Component
             'issue_date' => 'required|date',
             'maturity_date' => 'required|date|after_or_equal:issue_date',
             'tenure_months' => 'required|integer|min:1',
-            'pledgedItems' => 'required|array|min:1',
-            'pledgedItems.*.item_name' => 'required|string|max:150',
-            'pledgedItems.*.gross_weight' => 'required|numeric|min:0.001',
-            'pledgedItems.*.purity' => 'required|string',
-            'pledgedItems.*.gold_rate_per_gram' => 'required|numeric|min:1',
+            'items' => 'required|array|min:1',
+            'items.*.item_name' => 'required|string|max:150',
+            'items.*.gross_weight' => 'required|numeric|min:0.001',
+            'items.*.purity' => 'required|string',
+            'items.*.gold_rate_per_gram' => 'required|numeric|min:1',
         ]);
 
-        foreach ($this->pledgedItems as $idx => $item) {
+        foreach ($this->items as $idx => $item) {
             $this->updateItemCalculation($idx);
         }
 
@@ -225,7 +225,7 @@ class Loans extends Component
                 'issue_date' => $this->issue_date,
                 'maturity_date' => $this->maturity_date,
                 'tenure_months' => $this->tenure_months,
-                'total_pledged_items' => count($this->pledgedItems),
+                'total_pledged_items' => count($this->items),
                 'total_gross_weight' => $totalGross,
                 'total_stone_weight' => $totalStone,
                 'total_net_weight' => $totalNet,
@@ -239,7 +239,7 @@ class Loans extends Component
                 'created_by' => auth()->id(),
             ]);
 
-            foreach ($this->pledgedItems as $item) {
+            foreach ($this->items as $item) {
                 PledgedItem::create([
                     'loan_id' => $loan->id,
                     'customer_id' => $this->customer_id,
@@ -265,7 +265,7 @@ class Loans extends Component
                 $loan->id,
                 $loan->customer_id,
                 $loan->loan_no,
-                ['items_count' => count($this->pledgedItems), 'net_weight' => $totalNet, 'ltv' => $ltv]
+                ['items_count' => count($this->items), 'net_weight' => $totalNet, 'ltv' => $ltv]
             );
         });
 

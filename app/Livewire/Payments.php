@@ -40,6 +40,8 @@ class Payments extends Component
     public $activeLoans = [];
     public $selectedLoanDetails = null;
     public $liveInterestCalc = null;
+    public $selectedLoan = null;
+    public $interestCalc = null;
 
     // Selected payment for printing
     public $selectedPayment = null;
@@ -74,6 +76,8 @@ class Payments extends Component
         $this->notes = '';
         $this->selectedLoanDetails = null;
         $this->liveInterestCalc = null;
+        $this->selectedLoan = null;
+        $this->interestCalc = null;
 
         $this->activeLoans = Loan::with('customer')
             ->whereIn('status', ['Active', 'Overdue'])
@@ -88,6 +92,8 @@ class Payments extends Component
         if (empty($this->loan_id)) {
             $this->selectedLoanDetails = null;
             $this->liveInterestCalc = null;
+            $this->selectedLoan = null;
+            $this->interestCalc = null;
             return;
         }
 
@@ -95,6 +101,8 @@ class Payments extends Component
         if ($loan) {
             $this->selectedLoanDetails = $loan;
             $this->liveInterestCalc = InterestCalculator::calculate($loan, $this->payment_date);
+            $this->selectedLoan = $loan;
+            $this->interestCalc = $this->liveInterestCalc;
             $this->applyPaymentTypeDefaults();
         }
     }
@@ -103,6 +111,7 @@ class Payments extends Component
     {
         if ($this->selectedLoanDetails) {
             $this->liveInterestCalc = InterestCalculator::calculate($this->selectedLoanDetails, $this->payment_date);
+            $this->interestCalc = $this->liveInterestCalc;
             $this->applyPaymentTypeDefaults();
         }
     }
