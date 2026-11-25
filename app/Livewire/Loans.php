@@ -133,6 +133,11 @@ class Loans extends Component
         }
     }
 
+    public function recalculateItemRow($index)
+    {
+        $this->updateItemCalculation($index);
+    }
+
     public function updateItemCalculation($index)
     {
         if (!isset($this->items[$index])) return;
@@ -184,6 +189,13 @@ class Loans extends Component
     public function getTotalStoneWeightProperty()
     {
         return array_sum(array_map('floatval', array_column($this->items, 'stone_weight')));
+    }
+
+    public function getCalculatedLtvProperty()
+    {
+        $val = $this->total_valuation;
+        $principal = floatval($this->principal_amount ?? 0);
+        return $val > 0 ? round(($principal / $val) * 100, 2) : 0;
     }
 
     public function createLoan()
@@ -286,6 +298,7 @@ class Loans extends Component
         $loan = Loan::with(['customer', 'pledgedItems', 'creator'])->findOrFail($id);
         $this->selectedLoan = $loan;
         $this->showPrintModal = true;
+        $this->showReceiptModal = true;
     }
 
     public function render()
