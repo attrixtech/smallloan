@@ -1,6 +1,6 @@
 # thrumble.smallloan
 
-A compact, modern, lightweight **Gold Loan / Girvi Management Software** built with **Laravel 11**, **MySQL**, **Livewire**, and **Tailwind CSS** for Indian jewellery and gold loan businesses.
+A compact, modern, lightweight **Gold Loan / Girvi Management Software** built with **Laravel 13**, **MySQL**, **Livewire**, and **Tailwind CSS** for Indian jewellery and gold loan businesses.
 
 ## Features
 
@@ -16,7 +16,7 @@ A compact, modern, lightweight **Gold Loan / Girvi Management Software** built w
 
 ## Tech Stack
 
-- **Backend:** PHP 8.2+, Laravel 11, Livewire 4
+- **Backend:** PHP 8.3+, Laravel 13, Livewire 4
 - **Frontend:** Tailwind CSS, Vite
 - **Database:** MySQL
 
