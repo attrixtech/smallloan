@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
     {
         // 1. Users
         $admin = User::firstOrCreate(
-            ['email' => 'admin@webotapp.com'],
+            ['email' => 'admin@thrumble.smallloan'],
             [
                 'name' => 'Admin Manager',
                 'password' => Hash::make('admin123'),
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         );
 
         $staff = User::firstOrCreate(
-            ['email' => 'staff@webotapp.com'],
+            ['email' => 'staff@thrumble.smallloan'],
             [
                 'name' => 'Sanjay Verma (Cashier)',
                 'password' => Hash::make('staff123'),
@@ -47,10 +47,10 @@ class DatabaseSeeder extends Seeder
 
         // 2. Business Settings
         $settings = [
-            'shop_name' => 'WeBotApp Gold Loan & Girvi',
+            'shop_name' => 'thrumble.smallloan',
             'shop_address' => 'Shop #12, Zaveri Bazaar, Kalbadevi, Mumbai - 400002',
             'phone_number' => '+91 98765 43210',
-            'email' => 'contact@webotapp-girvi.com',
+            'email' => 'contact@thrumble.smallloan',
             'currency' => 'INR',
             'receipt_header' => 'Trusted Gold Loan & Girvi Financing since 1998',
             'receipt_footer' => 'Subject to Mumbai Jurisdiction. Safe vault custody guaranteed.',
@@ -525,6 +525,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Record initial financial logs
-        FinancialLog::record('system_initialized', 'Girvi ERP demo dataset and accounts initialized', 0);
+        FinancialLog::record('system_initialized', 'thrumble.smallloan demo dataset and accounts initialized', 0);
     }
 }

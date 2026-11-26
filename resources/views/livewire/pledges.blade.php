@@ -315,7 +315,7 @@
                     <div class="border-2 border-dashed border-slate-400 rounded-lg p-4 bg-amber-50/20 text-xs">
                         <div class="text-center border-b border-slate-300 pb-2 mb-3">
                             <div class="font-bold text-sm text-slate-900 uppercase tracking-tight">
-                                {{ \App\Models\BusinessSetting::get('shop_name', 'WeBotApp Gold Loan & Girvi') }}
+                                {{ \App\Models\BusinessSetting::get('shop_name', 'thrumble.smallloan') }}
                             </div>
                             <div class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">VAULT SECURITY PLEDGE TAG</div>
                         </div>
@@ -366,7 +366,7 @@
 
                         <div class="pt-2 border-t border-slate-300 flex justify-between text-[10px] text-slate-500">
                             <span>Status: <strong>{{ $selectedItem->status }}</strong></span>
-                            <span>WeBotApp Vault Safe</span>
+                            <span>thrumble.smallloan Vault Safe</span>
                         </div>
                     </div>
                 </div>

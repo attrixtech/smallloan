@@ -548,7 +548,7 @@
                     <!-- Shop Header -->
                     <div class="text-center pb-3 border-b-2 border-slate-900">
                         <h2 class="text-lg font-black tracking-tight text-slate-900 uppercase">
-                            {{ \App\Models\BusinessSetting::get('shop_name', 'WeBotApp Gold Loan & Girvi') }}
+                            {{ \App\Models\BusinessSetting::get('shop_name', 'thrumble.smallloan') }}
                         </h2>
                         <p class="text-xs text-slate-600">
                             {{ \App\Models\BusinessSetting::get('shop_address', '123 Sarafa Bazaar, Mumbai 400001') }} &bull; Ph: {{ \App\Models\BusinessSetting::get('phone_number', '+91 98765 43210') }}
@@ -638,7 +638,7 @@
                             <span class="font-semibold text-slate-800">Borrower's Signature / Thumb Impression</span>
                         </div>
                         <div class="border-t border-slate-400 pt-1">
-                            <span class="font-semibold text-slate-800">For {{ \App\Models\BusinessSetting::get('shop_name', 'WeBotApp Gold Loan') }} (Authorized Signatory)</span>
+                            <span class="font-semibold text-slate-800">For {{ \App\Models\BusinessSetting::get('shop_name', 'thrumble.smallloan') }} (Authorized Signatory)</span>
                         </div>
                     </div>
                 </div>

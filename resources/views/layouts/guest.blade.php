@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - WeBotApp Gold Loan Manager</title>
+    <title>Login - thrumble.smallloan</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-slate-100 flex items-center justify-center min-h-screen p-4 text-xs antialiased">

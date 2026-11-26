@@ -1,4 +1,4 @@
-# Project: WeBotApp Gold Loan Manager
+# Project: thrumble.smallloan
 
 Build a compact, modern, lightweight Gold Loan / Girvi Management Software using Laravel, MySQL, Livewire and Tailwind CSS.
 

@@ -212,7 +212,7 @@
                 <div class="p-6 overflow-y-auto space-y-4 text-slate-900 print-only">
                     <!-- Shop Header -->
                     <div class="text-center border-b border-slate-300 pb-3">
-                        <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900">{{ \App\Models\BusinessSetting::get('shop_name', 'WeBotApp Gold Loan & Girvi') }}</h2>
+                        <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900">{{ \App\Models\BusinessSetting::get('shop_name', 'thrumble.smallloan') }}</h2>
                         <div class="text-[11px] text-slate-600">{{ \App\Models\BusinessSetting::get('shop_address', 'Shop 12, Gold Market, Zaveri Bazaar, Mumbai 400002') }}</div>
                         <div class="text-[11px] text-slate-600">Phone: {{ \App\Models\BusinessSetting::get('shop_phone', '+91 98200 12345') }}</div>
                         <div class="mt-2 inline-block px-3 py-0.5 rounded bg-slate-100 border border-slate-300 text-slate-800 font-bold text-xs uppercase tracking-wide">

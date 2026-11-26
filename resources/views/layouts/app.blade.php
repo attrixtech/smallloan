@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? 'WeBotApp' }} - Gold Loan Manager</title>
+    <title>{{ isset($title) ? $title . ' - thrumble.smallloan' : 'thrumble.smallloan' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,10 +20,10 @@
             <div class="h-14 px-4 flex items-center justify-between border-b border-slate-200 bg-slate-50/50">
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-2 font-semibold text-slate-800 tracking-tight">
                     <div class="w-8 h-8 rounded bg-amber-500 flex items-center justify-center text-white shadow-xs font-bold text-sm">
-                        GL
+                        TS
                     </div>
                     <div>
-                        <div class="text-[13px] font-bold leading-none text-slate-900 tracking-tight">WeBotApp Girvi</div>
+                        <div class="text-[13px] font-bold leading-none text-slate-900 tracking-tight">thrumble.smallloan</div>
                         <div class="text-[10px] text-slate-500 font-normal leading-tight mt-0.5">Gold Loan Manager</div>
                     </div>
                 </a>
@@ -102,6 +102,10 @@
                         </form>
                     @endauth
                 </div>
+                <div class="mt-2.5 pt-2 border-t border-slate-200/80 text-[10px] text-slate-400 leading-relaxed">
+                    <div>Dev: <a href="https://www.attrixtech.com" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-amber-600 font-medium transition">Attrix Technologies</a></div>
+                    <div>Mktg: <a href="https://www.infusionn.in" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-amber-600 font-medium transition">Infusionn Pvt. Ltd.</a></div>
+                </div>
             </div>
         </aside>
 
@@ -112,7 +116,7 @@
                 <div class="flex items-center gap-4">
                     <div class="text-xs font-semibold text-slate-800 flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span>{{ \App\Models\BusinessSetting::get('shop_name', 'WeBotApp Gold Loan & Girvi') }}</span>
+                        <span>{{ \App\Models\BusinessSetting::get('shop_name', 'thrumble.smallloan') }}</span>
                     </div>
 
                     <!-- Live Gold Rate Ticker -->

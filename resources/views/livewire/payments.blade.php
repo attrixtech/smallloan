@@ -302,7 +302,7 @@
                 <div class="p-6 bg-white text-slate-900 text-xs font-sans space-y-4 print-receipt-container" id="printablePaymentReceipt">
                     <div class="text-center pb-3 border-b-2 border-slate-900">
                         <h2 class="text-base font-extrabold uppercase tracking-wide text-slate-900">
-                            {{ \App\Models\BusinessSetting::get('shop_name', 'WeBotApp Gold Loan & Girvi') }}
+                            {{ \App\Models\BusinessSetting::get('shop_name', 'thrumble.smallloan') }}
                         </h2>
                         <p class="text-[11px] text-slate-600">{{ \App\Models\BusinessSetting::get('shop_address', 'Main Road, Zaveri Bazaar, Mumbai') }}</p>
                         <p class="text-[11px] text-slate-600">Phone: {{ \App\Models\BusinessSetting::get('phone_number', '+91 98765 43210') }}</p>

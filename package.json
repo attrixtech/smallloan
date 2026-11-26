@@ -1,4 +1,5 @@
 {
+    "name": "thrumble.smallloan",
     "private": true,
     "type": "module",
     "scripts": {

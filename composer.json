@@ -1,9 +1,21 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "thrumble/smallloan",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "thrumble.smallloan - Gold Loan & Girvi Management Software.",
+    "keywords": ["thrumble.smallloan", "gold-loan", "girvi", "laravel", "livewire"],
+    "authors": [
+        {
+            "name": "Attrix Technologies",
+            "homepage": "https://www.attrixtech.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Infusionn Pvt. Ltd.",
+            "homepage": "https://www.infusionn.in",
+            "role": "Marketing"
+        }
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.2",

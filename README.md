@@ -1,4 +1,4 @@
-# Gold Loan & Girvi Management Software (WeBotApp)
+# thrumble.smallloan
 
 A compact, modern, lightweight **Gold Loan / Girvi Management Software** built with **Laravel 11**, **MySQL**, **Livewire**, and **Tailwind CSS** for Indian jewellery and gold loan businesses.
 
@@ -23,8 +23,8 @@ A compact, modern, lightweight **Gold Loan / Girvi Management Software** built w
 ## Quick Setup
 
 ```bash
-git clone https://github.com/webotapp-academy/Gold-Loan-Girvi-Management-Software.git
-cd Gold-Loan-Girvi-Management-Software
+git clone <repository-url>
+cd smallloan
 
 composer install
 npm install && npm run build
@@ -43,5 +43,10 @@ php artisan serve
 
 ## Default Demo Credentials
 
-- **Admin:** `admin@webotapp.com` / `admin123`
-- **Staff:** `staff@webotapp.com` / `staff123`
+- **Admin:** `admin@thrumble.smallloan` / `admin123`
+- **Staff:** `staff@thrumble.smallloan` / `staff123`
+
+## Credits
+
+- **Developed by:** [Attrix Technologies](https://www.attrixtech.com)
+- **Marketed by:** [Infusionn Pvt. Ltd.](https://www.infusionn.in)

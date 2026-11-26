@@ -52,10 +52,10 @@ class Settings extends Component
 
     public function loadBusinessSettings()
     {
-        $this->shop_name = BusinessSetting::get('shop_name', 'WeBotApp Gold Loan & Girvi');
+        $this->shop_name = BusinessSetting::get('shop_name', 'thrumble.smallloan');
         $this->shop_address = BusinessSetting::get('shop_address', 'Shop #12, Zaveri Bazaar, Kalbadevi, Mumbai - 400002');
         $this->phone_number = BusinessSetting::get('phone_number', '+91 98765 43210');
-        $this->email = BusinessSetting::get('email', 'contact@webotapp-girvi.com');
+        $this->email = BusinessSetting::get('email', 'contact@thrumble.smallloan');
         $this->currency = BusinessSetting::get('currency', 'INR');
         $this->receipt_header = BusinessSetting::get('receipt_header', 'Trusted Gold Loan & Girvi Financing since 1998');
         $this->receipt_footer = BusinessSetting::get('receipt_footer', 'Subject to Mumbai Jurisdiction. Thank you for your business.');
